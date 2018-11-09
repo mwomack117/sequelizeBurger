@@ -1,0 +1,109 @@
+<h1>Eat-Da-Burger!</h1>
+
+
+<div class="row">
+  <h4 class="subtitle">Add A Burger to the Menu</h4>
+  <form id="addburger" class="col s6 push-s3">
+
+    <textarea type="text" id="burger" class="materialize-textarea" name="name" placeholder="Type burger name here"></textarea>
+    <button type="submit">Add Burger!</button>
+
+  </form>
+
+</div>
+
+<br>
+
+<main>
+
+  <div class="container">
+    <div class="row">
+      <div class="col m6">
+        <h4>Burger Wish List</h4>
+        <ol>
+          {{#each burgers}}
+          {{#unless devoured}}
+          <li>
+            <p>
+              {{burger_name}}
+
+              <button data-id="{{this.id}}" id="devour" class="waves-effect waves-light btn-small">Devour Burger!</button>
+            </p>
+          </li>
+          {{/unless}}
+          {{/each}}
+        </ol>
+      </div>
+
+      <div class="col m6">
+        <h4>Burgers Devoured</h4>
+        <ol>
+          {{#each burgers}}
+          {{#if devoured}}
+          <li>
+            <p>
+               {{this.burger_name}}
+            </p>
+          </li>
+          {{/if}}
+          {{/each}}
+        </ol>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+
+
+
+<script>
+
+  $(function () {
+    // Add a burger 
+    $("#addburger").on("submit", function (event) {
+      event.preventDefault();
+
+      var newBurger = {
+        burger_name: $("#burger").val().trim()
+      };
+
+      $.ajax("/api/burgers", {
+        type: "POST",
+        data: newBurger
+      }).then(
+        function () {
+          console.log("new burger added");
+          location.reload();
+        }
+      )
+    })
+
+    // Devour a burger "PUT"
+    $("#devour").on("click", function () {
+      event.preventDefault();
+
+      var id = $(this).data("id");
+      console.log(id);
+
+      var eaten = {
+        devoured: true
+      };
+
+      $.ajax("/api/burgers/" + id, {
+        type: "PUT",
+        data: eaten
+      }).then(
+        function () {
+          console.log("Burger Devoured");
+          location.reload();
+        }
+      )
+    })
+
+  })
+
+
+</script>

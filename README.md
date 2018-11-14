@@ -1,5 +1,5 @@
 # Eat-Da-Burger Using Sequelize 
-Eat-Da-Burger! 
+!(https://github.com/mwomack117/sequelizeBurger/blob/master/public/assets/img/hamburger1.png)
 
 [Click this link to check out the live demo on Heroku](https://fierce-taiga-38892.herokuapp.com/)
 

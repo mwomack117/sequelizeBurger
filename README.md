@@ -7,7 +7,8 @@ This is a single page webapp used to track the burgers you want to eat and the b
 ## Built Using: 
 
   * **Handlebars.js** - to build semantic templates.
-  * **MySQL** - as the database. 
+  * **MySQL** - database (developent). 
+  * **JAWSDB** - database (production)
   * **Sequelize** - as the ORM.
   * **Express.js** - the web application framework used for nodeJS.
   * **Node.js** - the JavaScript runtime environment.
